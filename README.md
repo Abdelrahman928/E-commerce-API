@@ -1,6 +1,137 @@
-<<<<<<< HEAD
 # E-commerce-API
-an API for an Ecommerce web app using laravel 11
+an API for an Ecommerce web app using laravel 11.
+
+## key features:
+- user authentication, authorization, email and phone number verificaion.
+- user profile management
+- user roles : owner(admin), client.
+- routes protection using built-in/custom middlewares, and rate limiting.
+- categories, subcategories, and products management.
+- caching expensive database queries.
+- user cart functionalities.
+- email and SMS notifications.
+- orders and payment **in progress**
+- tracking orders **in progress**
+
+## models:
+- user model.
+- category model.
+- subcategory model
+- product model **polymorphic relation with category and subcategory models**.
+- product photo model.
+- cart model.
+- cart item model.
+- accepted payment method model.
+- user payment method model.
+- shipping address model.
+- order model.
+- order item model.
+
+## models relationships:
+- user model:
+  public function shippingAddress(){
+        return $this->hasMany(ShippingAddress::class);
+    }
+
+    public function userPayment(){
+        return $this->hasMany(UserPaymentMethod::class);
+    }
+
+    public function cart(){
+        return $this->hasOne(Cart::class);
+    }
+
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function UserPaymentMethod(){
+        return $this->hasMany(UserPaymentMethod::class);
+    }
+
+
+- category model:
+  public function products(){
+        return $this->morphMany(Product::class, 'productable');
+    }
+
+    public function subCategories()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
+
+- sub category model:
+  public function products(){
+        return $this->morphMany(Product::class, 'productable');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+- product model:
+  public function productable()
+    {
+        return $this->morphTo();
+    }
+
+    public function photos(){
+        return $this->hasMany(ProductPhoto::class);
+    }
+
+- product photo model:
+  public function product(){
+        return $this->belongsTo(Product::class);
+    }
+
+- cart model:
+  public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function Item(){
+        return $this->hasMany(CartItem::class);
+    }
+
+- cart item model:
+  public function cart(){
+        return $this->belongsTo(Cart::class);
+    }
+
+- accepted payment methods model:
+  none.
+
+- user payment method model:
+  public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+- shipping address model:
+  public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+- order model:
+  public function orderItem (){
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function shipping(){
+        return $this->belongsTo(ShippingAddress::class);
+    }
+
+- order item model:
+  public function order(){
+        return $this->belongsTo(Order::class);
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 
 API docs :
 
