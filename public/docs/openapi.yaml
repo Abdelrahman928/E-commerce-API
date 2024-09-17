@@ -1,0 +1,2636 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://e-commerce-api.test'
+paths:
+  /api/V1/email-login:
+    post:
+      summary: 'login an existing user.'
+      operationId: loginAnExistingUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"user logged in successfully\"\n  \"access_token\": $token\n}"
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Sorry, those credentials do not match.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Sorry, those credentials do not match.'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: mosciski.jayce@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: ipsum
+              required:
+                - email
+                - password
+      security: []
+  /api/V1/Phone-number-login:
+    post:
+      summary: 'login an existing user using phone number.'
+      operationId: loginAnExistingUserUsingPhoneNumber
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"user logged in successfully\"\n  \"access_token\": $token\n}"
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Sorry, those credentials do not match.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Sorry, those credentials do not match.'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  description: 'Must match the regex /^(\+?[0-9]{1,3})?([0-9]{10,15})$/. Must be at least 10 characters. Must not be greater than 11 characters.'
+                  example: xobgjsmgb
+                password:
+                  type: string
+                  description: ''
+                  example: dolores
+              required:
+                - phone_number
+                - password
+      security: []
+  /api/V1/register:
+    post:
+      summary: 'creates a new user.'
+      operationId: createsANewUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"message\": \"User created successfully. Verify your email to complete registration.\"\n  \"access_token\": $token\n}"
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bxug
+                last_name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: zntzpuxqpnivuuy
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: aglae15@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: K5u6$k
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+      security: []
+  /api/V1/enter-phone-number:
+    post:
+      summary: 'user enters their phone number.'
+      operationId: userEntersTheirPhoneNumber
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Verify your phone number to complete registration.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Verify your phone number to complete registration.'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  description: 'Must match the regex /^(\+?[0-9]{1,3})?([0-9]{10,15})$/. Must be between 10 and 15 digits.'
+                  example: '942247776953526'
+              required:
+                - phone_number
+      security: []
+  /api/V1/register/verify-email:
+    post:
+      summary: "verify user's email."
+      operationId: verifyUsersEmail
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'email verified successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'email verified successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                otp:
+                  type: string
+                  description: 'Must be 6 digits.'
+                  example: '309031'
+              required:
+                - otp
+      security: []
+  /api/V1/register/verify-Phone-number:
+    post:
+      summary: "verify user's phone number."
+      operationId: verifyUsersPhoneNumber
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'phone verified successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'phone verified successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'Must be 6 digits.'
+                  example: '147934'
+              required:
+                - code
+      security: []
+  '/api/V1/{category_name}':
+    get:
+      summary: ''
+      operationId: getApiV1Category_name
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                    last: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://e-commerce-api.test/api/V1/cum'
+                    per_page: 9
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                      last:
+                        type: string
+                        example: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://e-commerce-api.test/api/V1/cum?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://e-commerce-api.test/api/V1/cum'
+                      per_page:
+                        type: integer
+                        example: 9
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+  '/api/V1/{category_name}/sub-categories/{subCategory_name}':
+    get:
+      summary: ''
+      operationId: getApiV1Category_nameSubCategoriesSubCategory_name
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\SubCategory] maiores'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\SubCategory] maiores'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: subCategory_name
+        description: ''
+        example: maiores
+        required: true
+        schema:
+          type: string
+  '/api/V1/{category_name}/products/{product_name}':
+    get:
+      summary: ''
+      operationId: getApiV1Category_nameProductsProduct_name
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\Product] sint'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\Product] sint'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: "adds product to user's cart."
+      operationId: addsProductToUsersCart
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'product added to cart successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'product added to cart successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: ''
+                  example: neque
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 40
+              required:
+                - product_id
+                - quantity
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: product_name
+        description: ''
+        example: sint
+        required: true
+        schema:
+          type: string
+  '/api/V1/{category_name}/sub-categories/{subCategory_name}/products/{product_name}':
+    get:
+      summary: ''
+      operationId: getApiV1Category_nameSubCategoriesSubCategory_nameProductsProduct_name
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\SubCategory] maiores'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\SubCategory] maiores'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: subCategory_name
+        description: ''
+        example: maiores
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: product_name
+        description: ''
+        example: sint
+        required: true
+        schema:
+          type: string
+  '/api/V1/{category_name}/subcategories/{subcategory_name}/products/{product_name}':
+    post:
+      summary: "adds product to user's cart."
+      operationId: addsProductToUsersCart
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'product added to cart successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'product added to cart successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: ''
+                  example: dolorem
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 61
+              required:
+                - product_id
+                - quantity
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: subcategory_name
+        description: ''
+        example: maiores
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: product_name
+        description: ''
+        example: sint
+        required: true
+        schema:
+          type: string
+  /api/V1/cart-items:
+    get:
+      summary: ''
+      operationId: getApiV1CartItems
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\Category] cart-items'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\Category] cart-items'
+      tags:
+        - Endpoints
+      security: []
+  '/api/V1/cart-items/{cartItem_name}':
+    get:
+      summary: ''
+      operationId: getApiV1CartItemsCartItem_name
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\Product].'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\Product].'
+      tags:
+        - Endpoints
+      security: []
+    patch:
+      summary: "updates item's quantity inside user's cart."
+      operationId: updatesItemsQuantityInsideUsersCart
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'item updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'item updated successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: ''
+                  example: odit
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 65
+              required:
+                - product_id
+                - quantity
+      security: []
+    delete:
+      summary: "removes an item from user's cart."
+      operationId: removesAnItemFromUsersCart
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'item removed from cart successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'item removed from cart successfully'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: cartItem_name
+        description: ''
+        example: sit
+        required: true
+        schema:
+          type: string
+  /api/V1/logout:
+    post:
+      summary: 'logout a user.'
+      operationId: logoutAUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'user logged out successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'user logged out successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/V1/add-product/list-categories:
+    get:
+      summary: ''
+      operationId: getApiV1AddProductListCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: cum
+                      sub_categories: []
+                    -
+                      id: 2
+                      name: cum
+                      sub_categories: []
+                    -
+                      id: 3
+                      name: eligendi
+                      sub_categories: []
+                    -
+                      id: 4
+                      name: corrupti
+                      sub_categories: []
+                    -
+                      id: 5
+                      name: repudiandae
+                      sub_categories: []
+                    -
+                      id: 6
+                      name: cupiditate
+                      sub_categories: []
+                    -
+                      id: 7
+                      name: rerum
+                      sub_categories: []
+                    -
+                      id: 8
+                      name: assumenda
+                      sub_categories: []
+                    -
+                      id: 9
+                      name: nostrum
+                      sub_categories: []
+                    -
+                      id: 10
+                      name: harum
+                      sub_categories: []
+                    -
+                      id: 11
+                      name: hic
+                      sub_categories: []
+                    -
+                      id: 12
+                      name: aspernatur
+                      sub_categories: []
+                    -
+                      id: 13
+                      name: cum
+                      sub_categories:
+                        -
+                          id: 1
+                          category_id: 13
+                          name: maiores
+                    -
+                      id: 14
+                      name: est
+                      sub_categories:
+                        -
+                          id: 2
+                          category_id: 14
+                          name: explicabo
+                    -
+                      id: 15
+                      name: natus
+                      sub_categories: []
+                    -
+                      id: 16
+                      name: ab
+                      sub_categories: []
+                    -
+                      id: 17
+                      name: est
+                      sub_categories: []
+                    -
+                      id: 18
+                      name: nostrum
+                      sub_categories: []
+                    -
+                      id: 19
+                      name: deserunt
+                      sub_categories: []
+                    -
+                      id: 20
+                      name: tempore
+                      sub_categories: []
+                    -
+                      id: 21
+                      name: illum
+                      sub_categories: []
+                    -
+                      id: 22
+                      name: quia
+                      sub_categories:
+                        -
+                          id: 3
+                          category_id: 22
+                          name: dolores
+                    -
+                      id: 23
+                      name: aut
+                      sub_categories:
+                        -
+                          id: 4
+                          category_id: 23
+                          name: distinctio
+                    -
+                      id: 24
+                      name: in
+                      sub_categories:
+                        -
+                          id: 5
+                          category_id: 24
+                          name: consequuntur
+                    -
+                      id: 25
+                      name: et
+                      sub_categories:
+                        -
+                          id: 6
+                          category_id: 25
+                          name: sunt
+                    -
+                      id: 26
+                      name: eaque
+                      sub_categories:
+                        -
+                          id: 7
+                          category_id: 26
+                          name: voluptatem
+                    -
+                      id: 27
+                      name: ab
+                      sub_categories: []
+                    -
+                      id: 28
+                      name: autem
+                      sub_categories: []
+                    -
+                      id: 29
+                      name: dolorum
+                      sub_categories: []
+                    -
+                      id: 30
+                      name: natus
+                      sub_categories:
+                        -
+                          id: 8
+                          category_id: 30
+                          name: pariatur
+                    -
+                      id: 31
+                      name: praesentium
+                      sub_categories:
+                        -
+                          id: 9
+                          category_id: 31
+                          name: aspernatur
+                    -
+                      id: 32
+                      name: voluptates
+                      sub_categories:
+                        -
+                          id: 10
+                          category_id: 32
+                          name: dolores
+                    -
+                      id: 33
+                      name: aut
+                      sub_categories:
+                        -
+                          id: 11
+                          category_id: 33
+                          name: provident
+                    -
+                      id: 34
+                      name: consequatur
+                      sub_categories:
+                        -
+                          id: 12
+                          category_id: 34
+                          name: ex
+                    -
+                      id: 35
+                      name: provident
+                      sub_categories:
+                        -
+                          id: 13
+                          category_id: 35
+                          name: quidem
+                    -
+                      id: 36
+                      name: eligendi
+                      sub_categories:
+                        -
+                          id: 14
+                          category_id: 36
+                          name: facilis
+                    -
+                      id: 37
+                      name: architecto
+                      sub_categories:
+                        -
+                          id: 15
+                          category_id: 37
+                          name: inventore
+                    -
+                      id: 38
+                      name: quo
+                      sub_categories:
+                        -
+                          id: 16
+                          category_id: 38
+                          name: voluptatem
+                    -
+                      id: 39
+                      name: atque
+                      sub_categories:
+                        -
+                          id: 17
+                          category_id: 39
+                          name: consequatur
+                    -
+                      id: 40
+                      name: ab
+                      sub_categories:
+                        -
+                          id: 18
+                          category_id: 40
+                          name: molestiae
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: cum
+                        sub_categories: []
+                      -
+                        id: 2
+                        name: cum
+                        sub_categories: []
+                      -
+                        id: 3
+                        name: eligendi
+                        sub_categories: []
+                      -
+                        id: 4
+                        name: corrupti
+                        sub_categories: []
+                      -
+                        id: 5
+                        name: repudiandae
+                        sub_categories: []
+                      -
+                        id: 6
+                        name: cupiditate
+                        sub_categories: []
+                      -
+                        id: 7
+                        name: rerum
+                        sub_categories: []
+                      -
+                        id: 8
+                        name: assumenda
+                        sub_categories: []
+                      -
+                        id: 9
+                        name: nostrum
+                        sub_categories: []
+                      -
+                        id: 10
+                        name: harum
+                        sub_categories: []
+                      -
+                        id: 11
+                        name: hic
+                        sub_categories: []
+                      -
+                        id: 12
+                        name: aspernatur
+                        sub_categories: []
+                      -
+                        id: 13
+                        name: cum
+                        sub_categories:
+                          -
+                            id: 1
+                            category_id: 13
+                            name: maiores
+                      -
+                        id: 14
+                        name: est
+                        sub_categories:
+                          -
+                            id: 2
+                            category_id: 14
+                            name: explicabo
+                      -
+                        id: 15
+                        name: natus
+                        sub_categories: []
+                      -
+                        id: 16
+                        name: ab
+                        sub_categories: []
+                      -
+                        id: 17
+                        name: est
+                        sub_categories: []
+                      -
+                        id: 18
+                        name: nostrum
+                        sub_categories: []
+                      -
+                        id: 19
+                        name: deserunt
+                        sub_categories: []
+                      -
+                        id: 20
+                        name: tempore
+                        sub_categories: []
+                      -
+                        id: 21
+                        name: illum
+                        sub_categories: []
+                      -
+                        id: 22
+                        name: quia
+                        sub_categories:
+                          -
+                            id: 3
+                            category_id: 22
+                            name: dolores
+                      -
+                        id: 23
+                        name: aut
+                        sub_categories:
+                          -
+                            id: 4
+                            category_id: 23
+                            name: distinctio
+                      -
+                        id: 24
+                        name: in
+                        sub_categories:
+                          -
+                            id: 5
+                            category_id: 24
+                            name: consequuntur
+                      -
+                        id: 25
+                        name: et
+                        sub_categories:
+                          -
+                            id: 6
+                            category_id: 25
+                            name: sunt
+                      -
+                        id: 26
+                        name: eaque
+                        sub_categories:
+                          -
+                            id: 7
+                            category_id: 26
+                            name: voluptatem
+                      -
+                        id: 27
+                        name: ab
+                        sub_categories: []
+                      -
+                        id: 28
+                        name: autem
+                        sub_categories: []
+                      -
+                        id: 29
+                        name: dolorum
+                        sub_categories: []
+                      -
+                        id: 30
+                        name: natus
+                        sub_categories:
+                          -
+                            id: 8
+                            category_id: 30
+                            name: pariatur
+                      -
+                        id: 31
+                        name: praesentium
+                        sub_categories:
+                          -
+                            id: 9
+                            category_id: 31
+                            name: aspernatur
+                      -
+                        id: 32
+                        name: voluptates
+                        sub_categories:
+                          -
+                            id: 10
+                            category_id: 32
+                            name: dolores
+                      -
+                        id: 33
+                        name: aut
+                        sub_categories:
+                          -
+                            id: 11
+                            category_id: 33
+                            name: provident
+                      -
+                        id: 34
+                        name: consequatur
+                        sub_categories:
+                          -
+                            id: 12
+                            category_id: 34
+                            name: ex
+                      -
+                        id: 35
+                        name: provident
+                        sub_categories:
+                          -
+                            id: 13
+                            category_id: 35
+                            name: quidem
+                      -
+                        id: 36
+                        name: eligendi
+                        sub_categories:
+                          -
+                            id: 14
+                            category_id: 36
+                            name: facilis
+                      -
+                        id: 37
+                        name: architecto
+                        sub_categories:
+                          -
+                            id: 15
+                            category_id: 37
+                            name: inventore
+                      -
+                        id: 38
+                        name: quo
+                        sub_categories:
+                          -
+                            id: 16
+                            category_id: 38
+                            name: voluptatem
+                      -
+                        id: 39
+                        name: atque
+                        sub_categories:
+                          -
+                            id: 17
+                            category_id: 39
+                            name: consequatur
+                      -
+                        id: 40
+                        name: ab
+                        sub_categories:
+                          -
+                            id: 18
+                            category_id: 40
+                            name: molestiae
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: cum
+                        sub_categories:
+                          type: array
+                          example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/V1/add-product/create:
+    post:
+      summary: 'admin creates a new product.'
+      operationId: adminCreatesANewProduct
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'new product created successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'new product created successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: if
+                manufacturer:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: pvzmmhimjzktym
+                description:
+                  type: string
+                  description: ''
+                  example: 'Modi laborum aut voluptate in illo libero.'
+                price:
+                  type: number
+                  description: 'Must be at least 0. Must not be greater than 999999.99.'
+                  example: 9
+                stock:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 41
+                productable_type:
+                  type: string
+                  description: ''
+                  example: App\Models\Category
+                  enum:
+                    - App\Models\Category
+                    - App\Models\SubCategory
+                productable_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                photos:
+                  type: array
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - name
+                - manufacturer
+                - description
+                - price
+                - stock
+                - productable_type
+                - productable_id
+                - photos
+      security: []
+  '/api/V1/product/{product_name}':
+    patch:
+      summary: 'admin updates an existing product.'
+      operationId: adminUpdatesAnExistingProduct
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'product updated successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'product updated successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: dr
+                manufacturer:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: lsnvbktioknricblmnhdnnj
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores numquam non natus sapiente repellat et.'
+                price:
+                  type: number
+                  description: 'Must be at least 0. Must not be greater than 999999.99.'
+                  example: 8
+                stock:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 90
+                productable_type:
+                  type: string
+                  description: ''
+                  example: App\Models\SubCategory
+                  enum:
+                    - App\Models\Category
+                    - App\Models\SubCategory
+                productable_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                photos:
+                  type: array
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - name
+                - manufacturer
+                - description
+                - price
+                - stock
+                - productable_type
+                - productable_id
+                - photos
+      security: []
+    delete:
+      summary: 'admin deletes a product.'
+      operationId: adminDeletesAProduct
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'product deleted successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'product deleted successfully'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: product_name
+        description: ''
+        example: sint
+        required: true
+        schema:
+          type: string
+  /api/V1/create-new-category:
+    post:
+      summary: 'Admin adds new category.'
+      operationId: adminAddsNewCategory
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'category added successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'category added successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: minima
+              required:
+                - name
+      security: []
+  '/api/V1/categories/{category_name}':
+    delete:
+      summary: 'admin deletes an existing category.'
+      operationId: adminDeletesAnExistingCategory
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'category removed successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'category removed successfully'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: category_name
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+  /api/V1/add-discount/list:
+    get:
+      summary: ''
+      operationId: getApiV1AddDiscountList
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  categories:
+                    -
+                      id: 1
+                      name: cum
+                      products: []
+                    -
+                      id: 2
+                      name: cum
+                      products: []
+                    -
+                      id: 3
+                      name: eligendi
+                      products: []
+                    -
+                      id: 4
+                      name: corrupti
+                      products: []
+                    -
+                      id: 5
+                      name: repudiandae
+                      products: []
+                    -
+                      id: 6
+                      name: cupiditate
+                      products: []
+                    -
+                      id: 7
+                      name: rerum
+                      products: []
+                    -
+                      id: 8
+                      name: assumenda
+                      products: []
+                    -
+                      id: 9
+                      name: nostrum
+                      products: []
+                    -
+                      id: 10
+                      name: harum
+                      products: []
+                    -
+                      id: 11
+                      name: hic
+                      products:
+                        -
+                          id: 1
+                          name: sint
+                          manufacturer: 'Littel Ltd'
+                          price: '53.07'
+                          discount: '25.91'
+                          price_after_discount: 39.319563
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 12
+                      name: aspernatur
+                      products:
+                        -
+                          id: 2
+                          name: velit
+                          manufacturer: Bogan-Grant
+                          price: '51.47'
+                          discount: '0.43'
+                          price_after_discount: 51.248679
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 13
+                      name: cum
+                      products: []
+                    -
+                      id: 14
+                      name: est
+                      products: []
+                    -
+                      id: 15
+                      name: natus
+                      products:
+                        -
+                          id: 5
+                          name: architecto
+                          manufacturer: 'Aufderhar, Beatty and Langosh'
+                          price: '67.78'
+                          discount: '12.15'
+                          price_after_discount: 59.54473
+                          stock_status: 0
+                          photo: null
+                    -
+                      id: 16
+                      name: ab
+                      products:
+                        -
+                          id: 6
+                          name: accusamus
+                          manufacturer: Sipes-Bartoletti
+                          price: '41.14'
+                          discount: '36.98'
+                          price_after_discount: 25.926428
+                          stock_status: 0
+                          photo: null
+                    -
+                      id: 17
+                      name: est
+                      products:
+                        -
+                          id: 7
+                          name: nostrum
+                          manufacturer: 'Runolfsson, Fadel and Hyatt'
+                          price: '63.53'
+                          discount: '15.72'
+                          price_after_discount: 53.543084
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 18
+                      name: nostrum
+                      products:
+                        -
+                          id: 8
+                          name: quas
+                          manufacturer: Schaden-Bernier
+                          price: '45.57'
+                          discount: '39.07'
+                          price_after_discount: 27.765801
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 19
+                      name: deserunt
+                      products:
+                        -
+                          id: 9
+                          name: in
+                          manufacturer: 'Carter Group'
+                          price: '34.10'
+                          discount: '9.68'
+                          price_after_discount: 30.79912
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 20
+                      name: tempore
+                      products:
+                        -
+                          id: 10
+                          name: eligendi
+                          manufacturer: 'Altenwerth, Klein and Dickinson'
+                          price: '62.34'
+                          discount: '42.64'
+                          price_after_discount: 35.758224
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 21
+                      name: illum
+                      products:
+                        -
+                          id: 11
+                          name: quis
+                          manufacturer: 'Legros, Considine and Rodriguez'
+                          price: '81.58'
+                          discount: '38.27'
+                          price_after_discount: 50.359334
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/003377?text=iure'
+                    -
+                      id: 22
+                      name: quia
+                      products: []
+                    -
+                      id: 23
+                      name: aut
+                      products: []
+                    -
+                      id: 24
+                      name: in
+                      products: []
+                    -
+                      id: 25
+                      name: et
+                      products: []
+                    -
+                      id: 26
+                      name: eaque
+                      products: []
+                    -
+                      id: 27
+                      name: ab
+                      products:
+                        -
+                          id: 17
+                          name: dolores
+                          manufacturer: 'Zboncak, Lockman and Larkin'
+                          price: '37.48'
+                          discount: '7.78'
+                          price_after_discount: 34.564056
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/00ff66?text=magni'
+                    -
+                      id: 28
+                      name: autem
+                      products:
+                        -
+                          id: 18
+                          name: dolores
+                          manufacturer: Lakin-Renner
+                          price: '32.77'
+                          discount: '1.86'
+                          price_after_discount: 32.160478
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/00ffbb?text=molestias'
+                    -
+                      id: 29
+                      name: dolorum
+                      products:
+                        -
+                          id: 19
+                          name: aperiam
+                          manufacturer: Mills-Heathcote
+                          price: '51.45'
+                          discount: '1.82'
+                          price_after_discount: 50.51361
+                          stock_status: 0
+                          photo: 'https://via.placeholder.com/640x480.png/00ccff?text=enim'
+                    -
+                      id: 30
+                      name: natus
+                      products: []
+                    -
+                      id: 31
+                      name: praesentium
+                      products: []
+                    -
+                      id: 32
+                      name: voluptates
+                      products: []
+                    -
+                      id: 33
+                      name: aut
+                      products: []
+                    -
+                      id: 34
+                      name: consequatur
+                      products: []
+                    -
+                      id: 35
+                      name: provident
+                      products: []
+                    -
+                      id: 36
+                      name: eligendi
+                      products: []
+                    -
+                      id: 37
+                      name: architecto
+                      products: []
+                    -
+                      id: 38
+                      name: quo
+                      products: []
+                    -
+                      id: 39
+                      name: atque
+                      products: []
+                    -
+                      id: 40
+                      name: ab
+                      products: []
+                  subcategories:
+                    -
+                      id: 1
+                      category_id: 13
+                      name: maiores
+                      products:
+                        -
+                          id: 3
+                          name: voluptas
+                          manufacturer: Ritchie-Ritchie
+                          price: '51.88'
+                          discount: '33.62'
+                          price_after_discount: 34.437944
+                          stock_status: 0
+                          photo: null
+                    -
+                      id: 2
+                      category_id: 14
+                      name: explicabo
+                      products:
+                        -
+                          id: 4
+                          name: dolor
+                          manufacturer: 'Schmidt PLC'
+                          price: '59.30'
+                          discount: '0.29'
+                          price_after_discount: 59.12803
+                          stock_status: 1
+                          photo: null
+                    -
+                      id: 3
+                      category_id: 22
+                      name: dolores
+                      products:
+                        -
+                          id: 12
+                          name: expedita
+                          manufacturer: 'Thiel, Adams and Mills'
+                          price: '57.60'
+                          discount: '48.46'
+                          price_after_discount: 29.68704
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/00ff33?text=ut'
+                    -
+                      id: 4
+                      category_id: 23
+                      name: distinctio
+                      products:
+                        -
+                          id: 13
+                          name: quidem
+                          manufacturer: Stark-Watsica
+                          price: '17.49'
+                          discount: '25.03'
+                          price_after_discount: 13.112253
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/00aaaa?text=ullam'
+                    -
+                      id: 5
+                      category_id: 24
+                      name: consequuntur
+                      products:
+                        -
+                          id: 14
+                          name: commodi
+                          manufacturer: 'Kshlerin, Botsford and Stroman'
+                          price: '57.83'
+                          discount: '26.93'
+                          price_after_discount: 42.256381
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/0088ee?text=est'
+                    -
+                      id: 6
+                      category_id: 25
+                      name: sunt
+                      products:
+                        -
+                          id: 15
+                          name: molestiae
+                          manufacturer: 'Graham Group'
+                          price: '14.37'
+                          discount: '16.83'
+                          price_after_discount: 11.951529
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/005555?text=deserunt'
+                    -
+                      id: 7
+                      category_id: 26
+                      name: voluptatem
+                      products:
+                        -
+                          id: 16
+                          name: est
+                          manufacturer: Kozey-Schmeler
+                          price: '66.48'
+                          discount: '5.31'
+                          price_after_discount: 62.949912
+                          stock_status: 1
+                          photo: 'https://via.placeholder.com/640x480.png/00ccdd?text=quaerat'
+                    -
+                      id: 8
+                      category_id: 30
+                      name: pariatur
+                      products:
+                        -
+                          id: 20
+                          name: dolores
+                          manufacturer: 'Champlin Ltd'
+                          price: '24.43'
+                          discount: '34.11'
+                          price_after_discount: 16.096927
+                          stock_status: 0
+                          photo: 'https://via.placeholder.com/640x480.png/00cc00?text=esse'
+                    -
+                      id: 9
+                      category_id: 31
+                      name: aspernatur
+                      products: []
+                    -
+                      id: 10
+                      category_id: 32
+                      name: dolores
+                      products: []
+                    -
+                      id: 11
+                      category_id: 33
+                      name: provident
+                      products: []
+                    -
+                      id: 12
+                      category_id: 34
+                      name: ex
+                      products: []
+                    -
+                      id: 13
+                      category_id: 35
+                      name: quidem
+                      products: []
+                    -
+                      id: 14
+                      category_id: 36
+                      name: facilis
+                      products: []
+                    -
+                      id: 15
+                      category_id: 37
+                      name: inventore
+                      products: []
+                    -
+                      id: 16
+                      category_id: 38
+                      name: voluptatem
+                      products: []
+                    -
+                      id: 17
+                      category_id: 39
+                      name: consequatur
+                      products: []
+                    -
+                      id: 18
+                      category_id: 40
+                      name: molestiae
+                      products: []
+                properties:
+                  categories:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: cum
+                        products: []
+                      -
+                        id: 2
+                        name: cum
+                        products: []
+                      -
+                        id: 3
+                        name: eligendi
+                        products: []
+                      -
+                        id: 4
+                        name: corrupti
+                        products: []
+                      -
+                        id: 5
+                        name: repudiandae
+                        products: []
+                      -
+                        id: 6
+                        name: cupiditate
+                        products: []
+                      -
+                        id: 7
+                        name: rerum
+                        products: []
+                      -
+                        id: 8
+                        name: assumenda
+                        products: []
+                      -
+                        id: 9
+                        name: nostrum
+                        products: []
+                      -
+                        id: 10
+                        name: harum
+                        products: []
+                      -
+                        id: 11
+                        name: hic
+                        products:
+                          -
+                            id: 1
+                            name: sint
+                            manufacturer: 'Littel Ltd'
+                            price: '53.07'
+                            discount: '25.91'
+                            price_after_discount: 39.319563
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 12
+                        name: aspernatur
+                        products:
+                          -
+                            id: 2
+                            name: velit
+                            manufacturer: Bogan-Grant
+                            price: '51.47'
+                            discount: '0.43'
+                            price_after_discount: 51.248679
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 13
+                        name: cum
+                        products: []
+                      -
+                        id: 14
+                        name: est
+                        products: []
+                      -
+                        id: 15
+                        name: natus
+                        products:
+                          -
+                            id: 5
+                            name: architecto
+                            manufacturer: 'Aufderhar, Beatty and Langosh'
+                            price: '67.78'
+                            discount: '12.15'
+                            price_after_discount: 59.54473
+                            stock_status: 0
+                            photo: null
+                      -
+                        id: 16
+                        name: ab
+                        products:
+                          -
+                            id: 6
+                            name: accusamus
+                            manufacturer: Sipes-Bartoletti
+                            price: '41.14'
+                            discount: '36.98'
+                            price_after_discount: 25.926428
+                            stock_status: 0
+                            photo: null
+                      -
+                        id: 17
+                        name: est
+                        products:
+                          -
+                            id: 7
+                            name: nostrum
+                            manufacturer: 'Runolfsson, Fadel and Hyatt'
+                            price: '63.53'
+                            discount: '15.72'
+                            price_after_discount: 53.543084
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 18
+                        name: nostrum
+                        products:
+                          -
+                            id: 8
+                            name: quas
+                            manufacturer: Schaden-Bernier
+                            price: '45.57'
+                            discount: '39.07'
+                            price_after_discount: 27.765801
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 19
+                        name: deserunt
+                        products:
+                          -
+                            id: 9
+                            name: in
+                            manufacturer: 'Carter Group'
+                            price: '34.10'
+                            discount: '9.68'
+                            price_after_discount: 30.79912
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 20
+                        name: tempore
+                        products:
+                          -
+                            id: 10
+                            name: eligendi
+                            manufacturer: 'Altenwerth, Klein and Dickinson'
+                            price: '62.34'
+                            discount: '42.64'
+                            price_after_discount: 35.758224
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 21
+                        name: illum
+                        products:
+                          -
+                            id: 11
+                            name: quis
+                            manufacturer: 'Legros, Considine and Rodriguez'
+                            price: '81.58'
+                            discount: '38.27'
+                            price_after_discount: 50.359334
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/003377?text=iure'
+                      -
+                        id: 22
+                        name: quia
+                        products: []
+                      -
+                        id: 23
+                        name: aut
+                        products: []
+                      -
+                        id: 24
+                        name: in
+                        products: []
+                      -
+                        id: 25
+                        name: et
+                        products: []
+                      -
+                        id: 26
+                        name: eaque
+                        products: []
+                      -
+                        id: 27
+                        name: ab
+                        products:
+                          -
+                            id: 17
+                            name: dolores
+                            manufacturer: 'Zboncak, Lockman and Larkin'
+                            price: '37.48'
+                            discount: '7.78'
+                            price_after_discount: 34.564056
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/00ff66?text=magni'
+                      -
+                        id: 28
+                        name: autem
+                        products:
+                          -
+                            id: 18
+                            name: dolores
+                            manufacturer: Lakin-Renner
+                            price: '32.77'
+                            discount: '1.86'
+                            price_after_discount: 32.160478
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/00ffbb?text=molestias'
+                      -
+                        id: 29
+                        name: dolorum
+                        products:
+                          -
+                            id: 19
+                            name: aperiam
+                            manufacturer: Mills-Heathcote
+                            price: '51.45'
+                            discount: '1.82'
+                            price_after_discount: 50.51361
+                            stock_status: 0
+                            photo: 'https://via.placeholder.com/640x480.png/00ccff?text=enim'
+                      -
+                        id: 30
+                        name: natus
+                        products: []
+                      -
+                        id: 31
+                        name: praesentium
+                        products: []
+                      -
+                        id: 32
+                        name: voluptates
+                        products: []
+                      -
+                        id: 33
+                        name: aut
+                        products: []
+                      -
+                        id: 34
+                        name: consequatur
+                        products: []
+                      -
+                        id: 35
+                        name: provident
+                        products: []
+                      -
+                        id: 36
+                        name: eligendi
+                        products: []
+                      -
+                        id: 37
+                        name: architecto
+                        products: []
+                      -
+                        id: 38
+                        name: quo
+                        products: []
+                      -
+                        id: 39
+                        name: atque
+                        products: []
+                      -
+                        id: 40
+                        name: ab
+                        products: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: cum
+                        products:
+                          type: array
+                          example: []
+                  subcategories:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        category_id: 13
+                        name: maiores
+                        products:
+                          -
+                            id: 3
+                            name: voluptas
+                            manufacturer: Ritchie-Ritchie
+                            price: '51.88'
+                            discount: '33.62'
+                            price_after_discount: 34.437944
+                            stock_status: 0
+                            photo: null
+                      -
+                        id: 2
+                        category_id: 14
+                        name: explicabo
+                        products:
+                          -
+                            id: 4
+                            name: dolor
+                            manufacturer: 'Schmidt PLC'
+                            price: '59.30'
+                            discount: '0.29'
+                            price_after_discount: 59.12803
+                            stock_status: 1
+                            photo: null
+                      -
+                        id: 3
+                        category_id: 22
+                        name: dolores
+                        products:
+                          -
+                            id: 12
+                            name: expedita
+                            manufacturer: 'Thiel, Adams and Mills'
+                            price: '57.60'
+                            discount: '48.46'
+                            price_after_discount: 29.68704
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/00ff33?text=ut'
+                      -
+                        id: 4
+                        category_id: 23
+                        name: distinctio
+                        products:
+                          -
+                            id: 13
+                            name: quidem
+                            manufacturer: Stark-Watsica
+                            price: '17.49'
+                            discount: '25.03'
+                            price_after_discount: 13.112253
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/00aaaa?text=ullam'
+                      -
+                        id: 5
+                        category_id: 24
+                        name: consequuntur
+                        products:
+                          -
+                            id: 14
+                            name: commodi
+                            manufacturer: 'Kshlerin, Botsford and Stroman'
+                            price: '57.83'
+                            discount: '26.93'
+                            price_after_discount: 42.256381
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/0088ee?text=est'
+                      -
+                        id: 6
+                        category_id: 25
+                        name: sunt
+                        products:
+                          -
+                            id: 15
+                            name: molestiae
+                            manufacturer: 'Graham Group'
+                            price: '14.37'
+                            discount: '16.83'
+                            price_after_discount: 11.951529
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/005555?text=deserunt'
+                      -
+                        id: 7
+                        category_id: 26
+                        name: voluptatem
+                        products:
+                          -
+                            id: 16
+                            name: est
+                            manufacturer: Kozey-Schmeler
+                            price: '66.48'
+                            discount: '5.31'
+                            price_after_discount: 62.949912
+                            stock_status: 1
+                            photo: 'https://via.placeholder.com/640x480.png/00ccdd?text=quaerat'
+                      -
+                        id: 8
+                        category_id: 30
+                        name: pariatur
+                        products:
+                          -
+                            id: 20
+                            name: dolores
+                            manufacturer: 'Champlin Ltd'
+                            price: '24.43'
+                            discount: '34.11'
+                            price_after_discount: 16.096927
+                            stock_status: 0
+                            photo: 'https://via.placeholder.com/640x480.png/00cc00?text=esse'
+                      -
+                        id: 9
+                        category_id: 31
+                        name: aspernatur
+                        products: []
+                      -
+                        id: 10
+                        category_id: 32
+                        name: dolores
+                        products: []
+                      -
+                        id: 11
+                        category_id: 33
+                        name: provident
+                        products: []
+                      -
+                        id: 12
+                        category_id: 34
+                        name: ex
+                        products: []
+                      -
+                        id: 13
+                        category_id: 35
+                        name: quidem
+                        products: []
+                      -
+                        id: 14
+                        category_id: 36
+                        name: facilis
+                        products: []
+                      -
+                        id: 15
+                        category_id: 37
+                        name: inventore
+                        products: []
+                      -
+                        id: 16
+                        category_id: 38
+                        name: voluptatem
+                        products: []
+                      -
+                        id: 17
+                        category_id: 39
+                        name: consequatur
+                        products: []
+                      -
+                        id: 18
+                        category_id: 40
+                        name: molestiae
+                        products: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        category_id:
+                          type: integer
+                          example: 13
+                        name:
+                          type: string
+                          example: maiores
+                        products:
+                          type: array
+                          example:
+                            -
+                              id: 3
+                              name: voluptas
+                              manufacturer: Ritchie-Ritchie
+                              price: '51.88'
+                              discount: '33.62'
+                              price_after_discount: 34.437944
+                              stock_status: 0
+                              photo: null
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 3
+                              name:
+                                type: string
+                                example: voluptas
+                              manufacturer:
+                                type: string
+                                example: Ritchie-Ritchie
+                              price:
+                                type: string
+                                example: '51.88'
+                              discount:
+                                type: string
+                                example: '33.62'
+                              price_after_discount:
+                                type: number
+                                example: 34.437944
+                              stock_status:
+                                type: integer
+                                example: 0
+                              photo:
+                                type: string
+                                example: null
+      tags:
+        - Endpoints
+      security: []
+  /api/V1/add-discount:
+    post:
+      summary: 'admin applies discounts to one or more products or one or more categories.'
+      operationId: adminAppliesDiscountsToOneOrMoreProductsOrOneOrMoreCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'discount applied successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'discount applied successfully'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'validation errors'
+                properties:
+                  error:
+                    type: string
+                    example: 'validation errors'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_ids:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: string
+                category_ids:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: string
+                subcategory_ids:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: string
+                discount_percentage:
+                  type: number
+                  description: 'Must be between 0 and 100.'
+                  example: 1
+                valid_until:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-08-29T16:24:01'
+              required:
+                - discount_percentage
+                - valid_until
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

@@ -1,0 +1,1369 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/e-commerce-api.test"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "0a44d72d-6d12-4fb4-aabc-e3ed856599d2",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "login an existing user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/email-login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/email-login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"mosciski.jayce@example.com\",\"password\":\"ipsum\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"user logged in successfully\"\n  \"access_token\": $token\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"Sorry, those credentials do not match.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "login an existing user using phone number.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/Phone-number-login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/Phone-number-login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"phone_number\":\"xobgjsmgb\",\"password\":\"dolores\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"user logged in successfully\"\n  \"access_token\": $token\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"Sorry, those credentials do not match.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "creates a new user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"bxug\",\"last_name\":\"zntzpuxqpnivuuy\",\"email\":\"aglae15@example.com\",\"password\":\"K5u6$k\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"User created successfully. Verify your email to complete registration.\"\n  \"access_token\": $token\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "user enters their phone number.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/enter-phone-number",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/enter-phone-number"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"phone_number\":\"942247776953526\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"Verify your phone number to complete registration.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "verify user's email.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/register\/verify-email",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/register\/verify-email"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"otp\":\"309031\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"email verified successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "verify user's phone number.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/register\/verify-Phone-number",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/register\/verify-Phone-number"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"147934\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"phone verified successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/{category_name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/e-commerce-api.test\\\/api\\\/V1\\\/cum?page=1\",\"last\":\"http:\\\/\\\/e-commerce-api.test\\\/api\\\/V1\\\/cum?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/e-commerce-api.test\\\/api\\\/V1\\\/cum?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/e-commerce-api.test\\\/api\\\/V1\\\/cum\",\"per_page\":9,\"to\":null,\"total\":0}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/{category_name}\/sub-categories\/{subCategory_name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name\/sub-categories\/:subCategory_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name\/sub-categories\/:subCategory_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "subCategory_name",
+                                    "key": "subCategory_name",
+                                    "value": "maiores",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\SubCategory] maiores\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/{category_name}\/products\/{product_name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name\/products\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name\/products\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Product] sint\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "adds product to user's cart.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name\/products\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name\/products\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_id\":\"neque\",\"quantity\":40}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"product added to cart successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/{category_name}\/sub-categories\/{subCategory_name}\/products\/{product_name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name\/sub-categories\/:subCategory_name\/products\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name\/sub-categories\/:subCategory_name\/products\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "subCategory_name",
+                                    "key": "subCategory_name",
+                                    "value": "maiores",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\SubCategory] maiores\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "adds product to user's cart.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/:category_name\/subcategories\/:subcategory_name\/products\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/:category_name\/subcategories\/:subcategory_name\/products\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "subcategory_name",
+                                    "key": "subcategory_name",
+                                    "value": "maiores",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_id\":\"dolorem\",\"quantity\":61}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"product added to cart successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/cart-items",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/cart-items",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/cart-items"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Category] cart-items\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/cart-items\/{cartItem_name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/cart-items\/:cartItem_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/cart-items\/:cartItem_name",
+                            "variable": [
+                                {
+                                    "id": "cartItem_name",
+                                    "key": "cartItem_name",
+                                    "value": "sit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Product].\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "updates item's quantity inside user's cart.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/cart-items\/:cartItem_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/cart-items\/:cartItem_name",
+                            "variable": [
+                                {
+                                    "id": "cartItem_name",
+                                    "key": "cartItem_name",
+                                    "value": "sit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_id\":\"odit\",\"quantity\":65}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"item updated successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "removes an item from user's cart.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/cart-items\/:cartItem_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/cart-items\/:cartItem_name",
+                            "variable": [
+                                {
+                                    "id": "cartItem_name",
+                                    "key": "cartItem_name",
+                                    "value": "sit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"item removed from cart successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "logout a user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"user logged out successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/add-product\/list-categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/add-product\/list-categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/add-product\/list-categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"cum\",\"sub_categories\":[]},{\"id\":2,\"name\":\"cum\",\"sub_categories\":[]},{\"id\":3,\"name\":\"eligendi\",\"sub_categories\":[]},{\"id\":4,\"name\":\"corrupti\",\"sub_categories\":[]},{\"id\":5,\"name\":\"repudiandae\",\"sub_categories\":[]},{\"id\":6,\"name\":\"cupiditate\",\"sub_categories\":[]},{\"id\":7,\"name\":\"rerum\",\"sub_categories\":[]},{\"id\":8,\"name\":\"assumenda\",\"sub_categories\":[]},{\"id\":9,\"name\":\"nostrum\",\"sub_categories\":[]},{\"id\":10,\"name\":\"harum\",\"sub_categories\":[]},{\"id\":11,\"name\":\"hic\",\"sub_categories\":[]},{\"id\":12,\"name\":\"aspernatur\",\"sub_categories\":[]},{\"id\":13,\"name\":\"cum\",\"sub_categories\":[{\"id\":1,\"category_id\":13,\"name\":\"maiores\"}]},{\"id\":14,\"name\":\"est\",\"sub_categories\":[{\"id\":2,\"category_id\":14,\"name\":\"explicabo\"}]},{\"id\":15,\"name\":\"natus\",\"sub_categories\":[]},{\"id\":16,\"name\":\"ab\",\"sub_categories\":[]},{\"id\":17,\"name\":\"est\",\"sub_categories\":[]},{\"id\":18,\"name\":\"nostrum\",\"sub_categories\":[]},{\"id\":19,\"name\":\"deserunt\",\"sub_categories\":[]},{\"id\":20,\"name\":\"tempore\",\"sub_categories\":[]},{\"id\":21,\"name\":\"illum\",\"sub_categories\":[]},{\"id\":22,\"name\":\"quia\",\"sub_categories\":[{\"id\":3,\"category_id\":22,\"name\":\"dolores\"}]},{\"id\":23,\"name\":\"aut\",\"sub_categories\":[{\"id\":4,\"category_id\":23,\"name\":\"distinctio\"}]},{\"id\":24,\"name\":\"in\",\"sub_categories\":[{\"id\":5,\"category_id\":24,\"name\":\"consequuntur\"}]},{\"id\":25,\"name\":\"et\",\"sub_categories\":[{\"id\":6,\"category_id\":25,\"name\":\"sunt\"}]},{\"id\":26,\"name\":\"eaque\",\"sub_categories\":[{\"id\":7,\"category_id\":26,\"name\":\"voluptatem\"}]},{\"id\":27,\"name\":\"ab\",\"sub_categories\":[]},{\"id\":28,\"name\":\"autem\",\"sub_categories\":[]},{\"id\":29,\"name\":\"dolorum\",\"sub_categories\":[]},{\"id\":30,\"name\":\"natus\",\"sub_categories\":[{\"id\":8,\"category_id\":30,\"name\":\"pariatur\"}]},{\"id\":31,\"name\":\"praesentium\",\"sub_categories\":[{\"id\":9,\"category_id\":31,\"name\":\"aspernatur\"}]},{\"id\":32,\"name\":\"voluptates\",\"sub_categories\":[{\"id\":10,\"category_id\":32,\"name\":\"dolores\"}]},{\"id\":33,\"name\":\"aut\",\"sub_categories\":[{\"id\":11,\"category_id\":33,\"name\":\"provident\"}]},{\"id\":34,\"name\":\"consequatur\",\"sub_categories\":[{\"id\":12,\"category_id\":34,\"name\":\"ex\"}]},{\"id\":35,\"name\":\"provident\",\"sub_categories\":[{\"id\":13,\"category_id\":35,\"name\":\"quidem\"}]},{\"id\":36,\"name\":\"eligendi\",\"sub_categories\":[{\"id\":14,\"category_id\":36,\"name\":\"facilis\"}]},{\"id\":37,\"name\":\"architecto\",\"sub_categories\":[{\"id\":15,\"category_id\":37,\"name\":\"inventore\"}]},{\"id\":38,\"name\":\"quo\",\"sub_categories\":[{\"id\":16,\"category_id\":38,\"name\":\"voluptatem\"}]},{\"id\":39,\"name\":\"atque\",\"sub_categories\":[{\"id\":17,\"category_id\":39,\"name\":\"consequatur\"}]},{\"id\":40,\"name\":\"ab\",\"sub_categories\":[{\"id\":18,\"category_id\":40,\"name\":\"molestiae\"}]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "admin creates a new product.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/add-product\/create",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/add-product\/create"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "if",
+                                    "type": "text",
+                                    "description": "Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "manufacturer",
+                                    "value": "pvzmmhimjzktym",
+                                    "type": "text",
+                                    "description": "Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Modi laborum aut voluptate in illo libero.",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "price",
+                                    "value": 9,
+                                    "type": "text",
+                                    "description": "Must be at least 0. Must not be greater than 999999.99."
+                                },
+                                {
+                                    "key": "stock",
+                                    "value": 41,
+                                    "type": "text",
+                                    "description": "Must be at least 0."
+                                },
+                                {
+                                    "key": "productable_type",
+                                    "value": "App\\Models\\Category",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "productable_id",
+                                    "value": 19,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "photos[]",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"new product created successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "admin updates an existing product.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/product\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/product\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "dr",
+                                    "type": "text",
+                                    "description": "Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "manufacturer",
+                                    "value": "lsnvbktioknricblmnhdnnj",
+                                    "type": "text",
+                                    "description": "Must not be greater than 255 characters."
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Dolores numquam non natus sapiente repellat et.",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "price",
+                                    "value": 8,
+                                    "type": "text",
+                                    "description": "Must be at least 0. Must not be greater than 999999.99."
+                                },
+                                {
+                                    "key": "stock",
+                                    "value": 90,
+                                    "type": "text",
+                                    "description": "Must be at least 0."
+                                },
+                                {
+                                    "key": "productable_type",
+                                    "value": "App\\Models\\SubCategory",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "productable_id",
+                                    "value": 16,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "photos[]",
+                                    "src": [],
+                                    "type": "file"
+                                },
+                                {
+                                    "key": "_method",
+                                    "value": "PATCH",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"product updated successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "admin deletes a product.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/product\/:product_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/product\/:product_name",
+                            "variable": [
+                                {
+                                    "id": "product_name",
+                                    "key": "product_name",
+                                    "value": "sint",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"product deleted successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Admin adds new category.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/create-new-category",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/create-new-category"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"minima\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"category added successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "admin deletes an existing category.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/categories\/:category_name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/categories\/:category_name",
+                            "variable": [
+                                {
+                                    "id": "category_name",
+                                    "key": "category_name",
+                                    "value": "cum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"category removed successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/V1\/add-discount\/list",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/add-discount\/list",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/add-discount\/list"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"categories\":[{\"id\":1,\"name\":\"cum\",\"products\":[]},{\"id\":2,\"name\":\"cum\",\"products\":[]},{\"id\":3,\"name\":\"eligendi\",\"products\":[]},{\"id\":4,\"name\":\"corrupti\",\"products\":[]},{\"id\":5,\"name\":\"repudiandae\",\"products\":[]},{\"id\":6,\"name\":\"cupiditate\",\"products\":[]},{\"id\":7,\"name\":\"rerum\",\"products\":[]},{\"id\":8,\"name\":\"assumenda\",\"products\":[]},{\"id\":9,\"name\":\"nostrum\",\"products\":[]},{\"id\":10,\"name\":\"harum\",\"products\":[]},{\"id\":11,\"name\":\"hic\",\"products\":[{\"id\":1,\"name\":\"sint\",\"manufacturer\":\"Littel Ltd\",\"price\":\"53.07\",\"discount\":\"25.91\",\"price_after_discount\":39.319563,\"stock_status\":1,\"photo\":null}]},{\"id\":12,\"name\":\"aspernatur\",\"products\":[{\"id\":2,\"name\":\"velit\",\"manufacturer\":\"Bogan-Grant\",\"price\":\"51.47\",\"discount\":\"0.43\",\"price_after_discount\":51.248678999999996,\"stock_status\":1,\"photo\":null}]},{\"id\":13,\"name\":\"cum\",\"products\":[]},{\"id\":14,\"name\":\"est\",\"products\":[]},{\"id\":15,\"name\":\"natus\",\"products\":[{\"id\":5,\"name\":\"architecto\",\"manufacturer\":\"Aufderhar, Beatty and Langosh\",\"price\":\"67.78\",\"discount\":\"12.15\",\"price_after_discount\":59.54473,\"stock_status\":0,\"photo\":null}]},{\"id\":16,\"name\":\"ab\",\"products\":[{\"id\":6,\"name\":\"accusamus\",\"manufacturer\":\"Sipes-Bartoletti\",\"price\":\"41.14\",\"discount\":\"36.98\",\"price_after_discount\":25.926428,\"stock_status\":0,\"photo\":null}]},{\"id\":17,\"name\":\"est\",\"products\":[{\"id\":7,\"name\":\"nostrum\",\"manufacturer\":\"Runolfsson, Fadel and Hyatt\",\"price\":\"63.53\",\"discount\":\"15.72\",\"price_after_discount\":53.543084,\"stock_status\":1,\"photo\":null}]},{\"id\":18,\"name\":\"nostrum\",\"products\":[{\"id\":8,\"name\":\"quas\",\"manufacturer\":\"Schaden-Bernier\",\"price\":\"45.57\",\"discount\":\"39.07\",\"price_after_discount\":27.765801,\"stock_status\":1,\"photo\":null}]},{\"id\":19,\"name\":\"deserunt\",\"products\":[{\"id\":9,\"name\":\"in\",\"manufacturer\":\"Carter Group\",\"price\":\"34.10\",\"discount\":\"9.68\",\"price_after_discount\":30.799120000000002,\"stock_status\":1,\"photo\":null}]},{\"id\":20,\"name\":\"tempore\",\"products\":[{\"id\":10,\"name\":\"eligendi\",\"manufacturer\":\"Altenwerth, Klein and Dickinson\",\"price\":\"62.34\",\"discount\":\"42.64\",\"price_after_discount\":35.758224,\"stock_status\":1,\"photo\":null}]},{\"id\":21,\"name\":\"illum\",\"products\":[{\"id\":11,\"name\":\"quis\",\"manufacturer\":\"Legros, Considine and Rodriguez\",\"price\":\"81.58\",\"discount\":\"38.27\",\"price_after_discount\":50.359334,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/003377?text=iure\"}]},{\"id\":22,\"name\":\"quia\",\"products\":[]},{\"id\":23,\"name\":\"aut\",\"products\":[]},{\"id\":24,\"name\":\"in\",\"products\":[]},{\"id\":25,\"name\":\"et\",\"products\":[]},{\"id\":26,\"name\":\"eaque\",\"products\":[]},{\"id\":27,\"name\":\"ab\",\"products\":[{\"id\":17,\"name\":\"dolores\",\"manufacturer\":\"Zboncak, Lockman and Larkin\",\"price\":\"37.48\",\"discount\":\"7.78\",\"price_after_discount\":34.564055999999994,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00ff66?text=magni\"}]},{\"id\":28,\"name\":\"autem\",\"products\":[{\"id\":18,\"name\":\"dolores\",\"manufacturer\":\"Lakin-Renner\",\"price\":\"32.77\",\"discount\":\"1.86\",\"price_after_discount\":32.160478000000005,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00ffbb?text=molestias\"}]},{\"id\":29,\"name\":\"dolorum\",\"products\":[{\"id\":19,\"name\":\"aperiam\",\"manufacturer\":\"Mills-Heathcote\",\"price\":\"51.45\",\"discount\":\"1.82\",\"price_after_discount\":50.51361,\"stock_status\":0,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00ccff?text=enim\"}]},{\"id\":30,\"name\":\"natus\",\"products\":[]},{\"id\":31,\"name\":\"praesentium\",\"products\":[]},{\"id\":32,\"name\":\"voluptates\",\"products\":[]},{\"id\":33,\"name\":\"aut\",\"products\":[]},{\"id\":34,\"name\":\"consequatur\",\"products\":[]},{\"id\":35,\"name\":\"provident\",\"products\":[]},{\"id\":36,\"name\":\"eligendi\",\"products\":[]},{\"id\":37,\"name\":\"architecto\",\"products\":[]},{\"id\":38,\"name\":\"quo\",\"products\":[]},{\"id\":39,\"name\":\"atque\",\"products\":[]},{\"id\":40,\"name\":\"ab\",\"products\":[]}],\"subcategories\":[{\"id\":1,\"category_id\":13,\"name\":\"maiores\",\"products\":[{\"id\":3,\"name\":\"voluptas\",\"manufacturer\":\"Ritchie-Ritchie\",\"price\":\"51.88\",\"discount\":\"33.62\",\"price_after_discount\":34.437944,\"stock_status\":0,\"photo\":null}]},{\"id\":2,\"category_id\":14,\"name\":\"explicabo\",\"products\":[{\"id\":4,\"name\":\"dolor\",\"manufacturer\":\"Schmidt PLC\",\"price\":\"59.30\",\"discount\":\"0.29\",\"price_after_discount\":59.128029999999995,\"stock_status\":1,\"photo\":null}]},{\"id\":3,\"category_id\":22,\"name\":\"dolores\",\"products\":[{\"id\":12,\"name\":\"expedita\",\"manufacturer\":\"Thiel, Adams and Mills\",\"price\":\"57.60\",\"discount\":\"48.46\",\"price_after_discount\":29.68704,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00ff33?text=ut\"}]},{\"id\":4,\"category_id\":23,\"name\":\"distinctio\",\"products\":[{\"id\":13,\"name\":\"quidem\",\"manufacturer\":\"Stark-Watsica\",\"price\":\"17.49\",\"discount\":\"25.03\",\"price_after_discount\":13.112252999999999,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00aaaa?text=ullam\"}]},{\"id\":5,\"category_id\":24,\"name\":\"consequuntur\",\"products\":[{\"id\":14,\"name\":\"commodi\",\"manufacturer\":\"Kshlerin, Botsford and Stroman\",\"price\":\"57.83\",\"discount\":\"26.93\",\"price_after_discount\":42.256381,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/0088ee?text=est\"}]},{\"id\":6,\"category_id\":25,\"name\":\"sunt\",\"products\":[{\"id\":15,\"name\":\"molestiae\",\"manufacturer\":\"Graham Group\",\"price\":\"14.37\",\"discount\":\"16.83\",\"price_after_discount\":11.951529,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/005555?text=deserunt\"}]},{\"id\":7,\"category_id\":26,\"name\":\"voluptatem\",\"products\":[{\"id\":16,\"name\":\"est\",\"manufacturer\":\"Kozey-Schmeler\",\"price\":\"66.48\",\"discount\":\"5.31\",\"price_after_discount\":62.949912000000005,\"stock_status\":1,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00ccdd?text=quaerat\"}]},{\"id\":8,\"category_id\":30,\"name\":\"pariatur\",\"products\":[{\"id\":20,\"name\":\"dolores\",\"manufacturer\":\"Champlin Ltd\",\"price\":\"24.43\",\"discount\":\"34.11\",\"price_after_discount\":16.096927,\"stock_status\":0,\"photo\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00cc00?text=esse\"}]},{\"id\":9,\"category_id\":31,\"name\":\"aspernatur\",\"products\":[]},{\"id\":10,\"category_id\":32,\"name\":\"dolores\",\"products\":[]},{\"id\":11,\"category_id\":33,\"name\":\"provident\",\"products\":[]},{\"id\":12,\"category_id\":34,\"name\":\"ex\",\"products\":[]},{\"id\":13,\"category_id\":35,\"name\":\"quidem\",\"products\":[]},{\"id\":14,\"category_id\":36,\"name\":\"facilis\",\"products\":[]},{\"id\":15,\"category_id\":37,\"name\":\"inventore\",\"products\":[]},{\"id\":16,\"category_id\":38,\"name\":\"voluptatem\",\"products\":[]},{\"id\":17,\"category_id\":39,\"name\":\"consequatur\",\"products\":[]},{\"id\":18,\"category_id\":40,\"name\":\"molestiae\",\"products\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "admin applies discounts to one or more products or one or more categories.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/V1\/add-discount",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/V1\/add-discount"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"discount_percentage\":1,\"valid_until\":\"2024-08-29T16:24:01\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"message\": \"discount applied successfully\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"error\": \"validation errors\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}
