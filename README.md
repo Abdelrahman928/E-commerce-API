@@ -29,7 +29,8 @@ an API for an Ecommerce web app using laravel 11.
 
 ## models relationships:
 > user model:
-  public function shippingAddress(){
+
+    public function shippingAddress(){
         return $this->hasMany(ShippingAddress::class);
     }
 
@@ -51,7 +52,8 @@ an API for an Ecommerce web app using laravel 11.
 
 
 > category model:
-  public function products(){
+
+    public function products(){
         return $this->morphMany(Product::class, 'productable');
     }
 
@@ -61,7 +63,8 @@ an API for an Ecommerce web app using laravel 11.
     }
 
 > sub category model:
-  public function products(){
+
+    public function products(){
         return $this->morphMany(Product::class, 'productable');
     }
 
@@ -69,8 +72,9 @@ an API for an Ecommerce web app using laravel 11.
         return $this->belongsTo(Category::class);
     }
 
-> product model:
-  public function productable()
+ > product model:
+ 
+    public function productable()
     {
         return $this->morphTo();
     }
@@ -79,13 +83,15 @@ an API for an Ecommerce web app using laravel 11.
         return $this->hasMany(ProductPhoto::class);
     }
 
-> product photo model:
-  public function product(){
+ > product photo model:
+ 
+    public function product(){
         return $this->belongsTo(Product::class);
     }
 
 > cart model:
-  public function user(){
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
@@ -94,7 +100,8 @@ an API for an Ecommerce web app using laravel 11.
     }
 
 > cart item model:
-  public function cart(){
+
+    public function cart(){
         return $this->belongsTo(Cart::class);
     }
 
@@ -102,18 +109,20 @@ an API for an Ecommerce web app using laravel 11.
   none.
 
 > user payment method model:
-  public function user(){
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
 > shipping address model:
-  public function user(){
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
 > order model:
 
-  public function orderItem (){
+    public function orderItem (){
         return $this->hasMany(OrderItem::class);
     }
 
@@ -126,7 +135,8 @@ an API for an Ecommerce web app using laravel 11.
     }
 
 > order item model:
-  public function order(){
+
+    public function order(){
         return $this->belongsTo(Order::class);
     }
 
