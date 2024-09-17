@@ -1,5 +1,5 @@
 # E-commerce-API
-an API for an Ecommerce web app using laravel 11.
+an API for an Ecommerce web app using laravel 11, used docker with nginx for development environment.
 
 ## key features:
 - user authentication, authorization, email and phone number verificaion.
