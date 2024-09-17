@@ -28,7 +28,7 @@ an API for an Ecommerce web app using laravel 11.
 - order item model.
 
 ## models relationships:
-- user model:
+> user model:
   public function shippingAddress(){
         return $this->hasMany(ShippingAddress::class);
     }
@@ -50,7 +50,7 @@ an API for an Ecommerce web app using laravel 11.
     }
 
 
-- category model:
+> category model:
   public function products(){
         return $this->morphMany(Product::class, 'productable');
     }
@@ -60,7 +60,7 @@ an API for an Ecommerce web app using laravel 11.
         return $this->hasMany(SubCategory::class);
     }
 
-- sub category model:
+> sub category model:
   public function products(){
         return $this->morphMany(Product::class, 'productable');
     }
@@ -69,7 +69,7 @@ an API for an Ecommerce web app using laravel 11.
         return $this->belongsTo(Category::class);
     }
 
-- product model:
+> product model:
   public function productable()
     {
         return $this->morphTo();
@@ -79,12 +79,12 @@ an API for an Ecommerce web app using laravel 11.
         return $this->hasMany(ProductPhoto::class);
     }
 
-- product photo model:
+> product photo model:
   public function product(){
         return $this->belongsTo(Product::class);
     }
 
-- cart model:
+> cart model:
   public function user(){
         return $this->belongsTo(User::class);
     }
@@ -93,25 +93,26 @@ an API for an Ecommerce web app using laravel 11.
         return $this->hasMany(CartItem::class);
     }
 
-- cart item model:
+> cart item model:
   public function cart(){
         return $this->belongsTo(Cart::class);
     }
 
-- accepted payment methods model:
+> accepted payment methods model:
   none.
 
-- user payment method model:
+> user payment method model:
   public function user(){
         return $this->belongsTo(User::class);
     }
 
-- shipping address model:
+> shipping address model:
   public function user(){
         return $this->belongsTo(User::class);
     }
 
-- order model:
+> order model:
+
   public function orderItem (){
         return $this->hasMany(OrderItem::class);
     }
@@ -124,7 +125,7 @@ an API for an Ecommerce web app using laravel 11.
         return $this->belongsTo(ShippingAddress::class);
     }
 
-- order item model:
+> order item model:
   public function order(){
         return $this->belongsTo(Order::class);
     }
