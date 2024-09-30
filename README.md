@@ -11,7 +11,8 @@ an API for an Ecommerce web app using laravel 11, used docker with nginx for dev
 - user cart functionalities.
 - email and SMS notifications.
 - orders and payment **in progress**
-- tracking orders **in progress**
+- shipping and tracking orders **in progress**
+- search functionality **in progress**
 
 ## models:
 - user model.
